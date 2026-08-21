@@ -1,0 +1,13 @@
+{
+    "luau-lsp.completion.imports.ignoreGlobs": [
+        "**/.pesde/**",
+        "out/**/*"
+    ],
+    "luau-lsp.ignoreGlobs": [
+        "**/.pesde/**",
+        "lune_packages/**/*",
+        "out/**/*"
+    ],
+    "stylua.targetReleaseVersion": "latest",
+    "luau-lsp.fflags.enableNewSolver": true,
+}

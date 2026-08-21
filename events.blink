@@ -1,0 +1,29 @@
+option ClientOutput = "./events/client.luau"
+option ServerOutput = "./events/server.luau"
+option Casing = Camel
+
+enum Union = "type" {
+    init {
+        data: map {[string]: unknown}
+    },
+    
+    patch {
+        data: map {[string]: unknown}
+    }
+}
+
+scope charmSync {
+    
+    event RequestState {
+        from: Client,
+        type: Reliable,
+        call: SingleAsync,
+    }   
+
+    event StatePacket {
+        from: Server,
+        type: Reliable,
+        Call: SingleAsync,
+        data: Union[]
+    }
+}

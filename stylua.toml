@@ -1,0 +1,7 @@
+syntax = "Luau"
+quote_style = "ForceSingle"
+call_parentheses = "NoSingleTable"
+
+[sort_requires]
+enabled = true
+
