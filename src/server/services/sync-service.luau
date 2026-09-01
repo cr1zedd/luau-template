@@ -25,14 +25,9 @@ const function start()
 		charmServer.removeClient(player)
 	end)
 
-	charmServer.connect(
-		function(
-			client,
-			payloads: { { data: { [string]: any }, type: 'init' } | { data: { [string]: any }, type: 'patch' } }
-		)
-			eventsServer.charmSync.StatePacket.fire(client, payloads)
-		end
-	)
+	charmServer.connect(function(client, payloads)
+		eventsServer.charmSync.StatePacket.fire(client, payloads)
+	end)
 end
 
 return runtime.registerModule {

@@ -14,8 +14,8 @@ const function start()
 	charmClient.addSignals {
 		[`playerData{player.User.Id}`] = datastore.setData,
 	}
-	events_client.charmSync.StatePacket.on(function(data: { { data: { [string]: any }, type: string } })
-		charmClient.patch(data :: any)
+	events_client.charmSync.StatePacket.on(function(data)
+		charmClient.patch(data)
 	end)
 
 	events_client.charmSync.RequestState.fire()
