@@ -10,10 +10,14 @@ const runtime = require(ReplicatedStorage.shared.utils.runtime)
 
 const charmServer = charmSync.server
 
+const computed = charm.computed
+
 const function start()
 	eventsServer.charmSync.RequestState.on(function(player: Player)
 		charmServer.addSignalsToClient(player, {
-			[`playerData{player.User.Id}`] = datastore.getData,
+			[`playerData{player.User.Id}`] = computed(function()
+				return datastore.get(player)
+			end),
 		})
 	end)
 
