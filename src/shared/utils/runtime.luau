@@ -8,10 +8,19 @@ type settings<T = {}> = {
 
 type Module<T = {}> = settings<T>
 
+const noValueMessage = `Module code did not return exactly one value`
+
 const function safeRequire(module: ModuleScript): Module
-	const status, value = pcall(require, module)
+	const status, value = xpcall(require, function(message)
+		if message == noValueMessage then
+			return `Did you forgot to call registerModule? \n in {module:GetFullName()}`
+		end
+
+		return message
+	end, module)
+
 	if not status then
-		const traceback = debug.traceback(coroutine.running(), value, 2)
+		const traceback = debug.traceback(coroutine.running(), value .. `{module:GetFullName()}`, 2)
 		error(traceback, 2)
 	end
 	return value
